@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import Form from './components/form';
 import './App.css';
+import User from './components/users';
+import {useAxiosHelper,BASE_URL} from './util/axiosHelper';
+
 
 function App() {
+
+let fetchData = useAxiosHelper(BASE_URL).useGet()
+
+let list = []
+  if(fetchData.data){  
+   list = fetchData.data.map((user)=>{
+     return <User key={user.username}
+                  name_prefix={user.name_prefix} 
+                  username={user.username} 
+                  fullname={`${user.first_name} ${user.last_name}`}
+                  dob={user.date_of_birth}
+                />
+  })}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form/>
+      <section>
+         <p className='user-title'>Users</p>
+         <div>
+            {list.length == 0 ? (<p style={{textAlign:"center"}}>No user on this list yet :(</p>):list}
+         </div>
+      </section>
     </div>
   );
 }
