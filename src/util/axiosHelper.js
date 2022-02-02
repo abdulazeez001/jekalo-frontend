@@ -37,7 +37,7 @@ export const useAxiosHelper = (BASE_URL) =>{
              useGet:()=>{
                 useEffect(() => {
                     axiosTemplate(BASE_URL,stateFetchData).get()
-                 },stateFetchData);
+                 },[stateFetchData]);// eslint-disable-line react-hooks/exhaustive-deps
                  return fetchData
              },
     }

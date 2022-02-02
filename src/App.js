@@ -25,7 +25,7 @@ let list = []
       <section>
          <p className='user-title'>Users</p>
          <div>
-            {list.length == 0 ? (<p style={{textAlign:"center"}}>No user on this list yet :(</p>):list}
+            {list.length === 0 ? (<p style={{textAlign:"center"}}>No user on this list yet :(</p>):list}
          </div>
       </section>
     </div>
